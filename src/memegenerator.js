@@ -1,3 +1,4 @@
+import { FileSaver, saveAs } from 'file-saver';
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 
@@ -90,7 +91,13 @@ export default function MemeGenerator() {
       >
         Generate
       </button>
-      <button>Download</button>
+      <button
+        onClick={() => {
+          saveAs(image, 'your meme.jpg');
+        }}
+      >
+        Download
+      </button>
       <br />
       <img src={image} alt="meme" />
     </form>
