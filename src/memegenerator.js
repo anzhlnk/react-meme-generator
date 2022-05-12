@@ -30,6 +30,8 @@ export default function MemeGenerator() {
     'https://api.memegen.link/images/grumpycat/Hi/there!.png',
   );
 
+  const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
+
   console.log(image);
 
   return (
@@ -78,7 +80,8 @@ export default function MemeGenerator() {
         onClick={() => {
           customerTemplate === ''
             ? setImage(
-                arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)],
+                random.slice(0, random.length - 4) +
+                  `/ ${topText}/ ${bottomText}.png`,
               )
             : setImage(
                 `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
