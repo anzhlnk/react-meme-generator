@@ -1,4 +1,4 @@
-import { FileSaver, saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 
@@ -9,7 +9,6 @@ export default function MemeGenerator() {
   const arrayOfLinks = [];
   const [customerTemplate, setCustomerTemplate] = useState('');
 
-  //Version1
   useEffect(() => {
     fetch('https://api.memegen.link/templates')
       .then((response) => {
@@ -69,7 +68,6 @@ export default function MemeGenerator() {
       <label>
         Meme template
         <input
-          type="text"
           name="image"
           placeholder="Add template"
           onChange={(event) => {
