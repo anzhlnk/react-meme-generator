@@ -2,11 +2,8 @@
 import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
-  const [text, setText] = useState({
-    topText: '',
-    bottomText: '',
-  });
-
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
   const [allData, setAllData] = useState([]);
   const arrayOfLinks = [];
   const [customerTemplate, setCustomerTemplate] = useState('');
@@ -30,7 +27,7 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    'https://api.memegen.link/images/grumpycat.png',
+    'https://api.memegen.link/images/grumpycat/Hi/there!.png',
   );
 
   console.log(image);
@@ -45,16 +42,11 @@ export default function MemeGenerator() {
       <label>
         Top text{' '}
         <input
-          type="text"
-          name="topText"
           placeholder="Add Top Text"
           onChange={(event) => {
-            setText({
-              ...text,
-              [event.target.name]: event.target.value,
-            });
+            setTopText(event.target.value);
           }}
-          value={text.topText}
+          value={topText}
         />
       </label>
       <br />
@@ -62,16 +54,11 @@ export default function MemeGenerator() {
       <label>
         Bottom text
         <input
-          type="text"
-          name="bottomText"
           placeholder="Add Bottom Text"
           onChange={(event) => {
-            setText({
-              ...text,
-              [event.target.name]: event.target.value,
-            });
+            setBottomText(event.target.value);
           }}
-          value={text.bottomText}
+          value={bottomText}
         />
       </label>
       <br />
@@ -94,7 +81,7 @@ export default function MemeGenerator() {
                 arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)],
               )
             : setImage(
-                `https://api.memegen.link/images/${customerTemplate}.png`,
+                `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
               );
         }}
       >
