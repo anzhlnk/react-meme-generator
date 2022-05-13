@@ -3,44 +3,31 @@ import { saveAs } from 'file-saver';
 import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
-  const [topText, setTopText] = useState(' ');
-  const [bottomText, setBottomText] = useState(' ');
-  const [allData, setAllData] = useState([]);
-  const arrayOfLinks = [];
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
   const [customerTemplate, setCustomerTemplate] = useState('');
-
-  // For the random meme generator
-  useEffect(() => {
-    fetch('https://api.memegen.link/templates')
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setAllData(response);
-      })
-      .catch(() => {
-        return 'Error';
-      });
-  }, []);
-
-  for (let i = 0; i < allData.length; i++) {
-    arrayOfLinks.push(allData[i].blank);
-  }
 
   const [image, setImage] = useState(
     `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
   );
 
   useEffect(() => {
-    if (customerTemplate === '') {
-      setCustomerTemplate('grumpycat');
+    if (topText && bottomText) {
       setImage(
         `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
       );
+    } else if (topText && !bottomText) {
+      setImage(
+        `https://api.memegen.link/images/${customerTemplate}/${topText}/_.png`,
+      );
+    } else if (!topText && bottomText) {
+      setImage(
+        `https://api.memegen.link/images/${customerTemplate}/_/${bottomText}.png`,
+      );
+    } else if (!topText && !bottomText && !customerTemplate) {
+      setImage(`https://api.memegen.link/images/grumpycat.png`);
     } else {
-      setImage(
-        `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
-      );
+      setImage(`https://api.memegen.link/images/${customerTemplate}.png`);
     }
   }, [topText, bottomText, customerTemplate]);
 
@@ -51,6 +38,29 @@ export default function MemeGenerator() {
         console.log('submitted');
       }}
     >
+      {/* Customer template */}
+      <br />
+      <label>
+        Meme template
+        <input
+          name="image"
+          placeholder="Add template"
+          value={customerTemplate}
+          onChange={(event) => {
+            setCustomerTemplate(event.target.value);
+          }}
+        />
+        {/* Customer Template reset button */}
+        <button
+          className="button-4"
+          onClick={() => {
+            setCustomerTemplate('');
+          }}
+        >
+          Reset
+        </button>
+      </label>
+
       {/* Top text */}
       <label>
         Top text{' '}
@@ -91,31 +101,7 @@ export default function MemeGenerator() {
         >
           Reset
         </button>
-        {/* Customer template */}
       </label>
-      <br />
-
-      <label>
-        Meme template
-        <input
-          name="image"
-          placeholder="Add template"
-          value={customerTemplate}
-          onChange={(event) => {
-            setCustomerTemplate(event.target.value);
-          }}
-        />
-        {/* Customer Template reset button */}
-        <button
-          className="button-4"
-          onClick={() => {
-            setCustomerTemplate('grumpycat');
-          }}
-        >
-          Reset
-        </button>
-      </label>
-
       {/* Download button */}
 
       <img src={image} alt="meme" data-test-id="meme-image" />
