@@ -22,7 +22,7 @@ export default function MemeGenerator() {
       );
     } else if (!topText && bottomText && customerTemplate) {
       setImage(
-        `https://api.memegen.link/images/${customerTemplate}/_/${bottomText}.png`,
+        `https://api.memegen.link/images/${customerTemplate}/ /${bottomText}.png`,
       );
     } else if (topText && bottomText && !customerTemplate) {
       setImage(
@@ -31,7 +31,7 @@ export default function MemeGenerator() {
     } else if (topText && !bottomText && !customerTemplate) {
       setImage(`https://api.memegen.link/images/grumpycat/${topText}/.png`);
     } else if (!topText && bottomText && !customerTemplate) {
-      setImage(`https://api.memegen.link/images/grumpycat/_/${bottomText}.png`);
+      setImage(`https://api.memegen.link/images/grumpycat/ /${bottomText}.png`);
     } else if (!topText && !bottomText && !customerTemplate) {
       setImage(`https://api.memegen.link/images/grumpycat.png`);
     } else {
