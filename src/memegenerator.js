@@ -112,7 +112,7 @@ export default function MemeGenerator() {
       </label>
       <br />
       <button
-        className={'button-4'}
+        className="button-4"
         onClick={() => {
           setCustomerTemplate(
             allData[Math.floor(Math.random() * allData.length)]['id'],
