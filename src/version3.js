@@ -72,7 +72,6 @@ export default function MemeGenerator() {
         </button>
       </label>
       <br />
-      <br />
       {/* Bottom text */}
       <label>
         Bottom text
@@ -95,7 +94,7 @@ export default function MemeGenerator() {
         {/* Customer template */}
       </label>
       <br />
-      <br />
+
       <label>
         Meme template
         <input
@@ -117,6 +116,7 @@ export default function MemeGenerator() {
         </button>
       </label>
       {/* Generate button */}
+      <br />
       <button
         className="button-4"
         onClick={() => {
@@ -126,6 +126,8 @@ export default function MemeGenerator() {
         Random
       </button>
       {/* Download button */}
+
+      <img src={image} alt="meme" data-test-id="meme-image" />
       <button
         className="button-4"
         onClick={() => {
@@ -134,8 +136,6 @@ export default function MemeGenerator() {
       >
         Download
       </button>
-      <br />
-      <img src={image} alt="meme" data-test-id="meme-image" />
     </form>
   );
 }
