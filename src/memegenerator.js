@@ -1,14 +1,13 @@
 import './App.css';
 import { saveAs } from 'file-saver';
-/** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
-  const [topText, setTopText] = useState('');
-  const [bottomText, setBottomText] = useState('');
+  const [topText, setTopText] = useState('Hi');
+  const [bottomText, setBottomText] = useState('there');
   const [allData, setAllData] = useState([]);
   const arrayOfLinks = [];
-  const [customerTemplate, setCustomerTemplate] = useState('');
+  const [customerTemplate, setCustomerTemplate] = useState('grumpycat');
 
   // For the random meme generator
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    'https://api.memegen.link/images/grumpycat/Hi/there!.png',
+    `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
   );
 
   const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
@@ -57,7 +56,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setTopText('');
+            setTopText('Hi');
           }}
         >
           Reset
@@ -79,7 +78,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setBottomText('');
+            setBottomText('there');
           }}
         >
           Reset
@@ -102,7 +101,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setCustomerTemplate('');
+            setCustomerTemplate('grumpycat');
           }}
         >
           Reset
