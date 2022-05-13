@@ -97,7 +97,7 @@ export default function MemeGenerator() {
         />
         <datalist id="allmemes">
           {allData.map((element) => {
-            return <option key={element['id']} value={element['id']}></option>;
+            return <option key={element['id']} value={element['id']} />;
           })}
         </datalist>
         {/* Customer Template reset button */}
