@@ -1,3 +1,4 @@
+import './App.css';
 import { saveAs } from 'file-saver';
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
@@ -50,6 +51,14 @@ export default function MemeGenerator() {
           }}
           value={topText}
         />
+        <button
+          className="button-4"
+          onClick={() => {
+            setTopText('');
+          }}
+        >
+          Reset
+        </button>
       </label>
       <br />
       <br />
@@ -62,6 +71,14 @@ export default function MemeGenerator() {
           }}
           value={bottomText}
         />
+        <button
+          className="button-4"
+          onClick={() => {
+            setBottomText('');
+          }}
+        >
+          Reset
+        </button>
       </label>
       <br />
       <br />
@@ -70,12 +87,22 @@ export default function MemeGenerator() {
         <input
           name="image"
           placeholder="Add template"
+          value={customerTemplate}
           onChange={(event) => {
             setCustomerTemplate(event.target.value);
           }}
         />
+        <button
+          className="button-4"
+          onClick={() => {
+            setCustomerTemplate('');
+          }}
+        >
+          Reset
+        </button>
       </label>
       <button
+        className="button-4"
         onClick={() => {
           customerTemplate === ''
             ? setImage(
@@ -90,6 +117,7 @@ export default function MemeGenerator() {
         Generate
       </button>
       <button
+        className="button-4"
         onClick={() => {
           saveAs(image, 'your meme.jpg');
         }}
