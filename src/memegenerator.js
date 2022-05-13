@@ -104,6 +104,7 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
+      <br />
       <button
         className={'button-4'}
         onClick={() => {
