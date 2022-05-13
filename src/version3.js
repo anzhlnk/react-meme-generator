@@ -48,27 +48,6 @@ export default function MemeGenerator() {
     >
       {/* Customer template */}
       <br />
-      <label>
-        Meme template
-        <input
-          name="image"
-          placeholder="Add template"
-          value={customerTemplate}
-          onChange={(event) => {
-            setCustomerTemplate(event.target.value);
-          }}
-        />
-        {/* Customer Template reset button */}
-        <button
-          className="button-4"
-          onClick={() => {
-            setCustomerTemplate('');
-          }}
-        >
-          Reset
-        </button>
-      </label>
-
       {/* Top text */}
       <label>
         Top text{' '}
@@ -110,6 +89,27 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
+      <label>
+        Meme template
+        <input
+          name="image"
+          placeholder="Add template"
+          value={customerTemplate}
+          onChange={(event) => {
+            setCustomerTemplate(event.target.value);
+          }}
+        />
+        {/* Customer Template reset button */}
+        <button
+          className="button-4"
+          onClick={() => {
+            setCustomerTemplate('');
+          }}
+        >
+          Reset
+        </button>
+      </label>
+
       {/* Download button */}
 
       <img src={image} alt="meme" data-test-id="meme-image" />
