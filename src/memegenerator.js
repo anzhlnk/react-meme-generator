@@ -9,6 +9,20 @@ export default function MemeGenerator() {
   const [image, setImage] = useState(
     `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
   );
+  const [allData, setAllData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.memegen.link/templates')
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        setAllData(response);
+      })
+      .catch(() => {
+        return 'Error';
+      });
+  }, []);
 
   useEffect(() => {
     setImage(
@@ -90,10 +104,20 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
-
-      {/* Download button */}
+      <button
+        className={'button-4'}
+        onClick={() => {
+          setCustomerTemplate(
+            allData[Math.floor(Math.random() * allData.length)]['id'],
+          );
+        }}
+      >
+        Random
+      </button>
 
       <img src={image} alt="meme" data-test-id="meme-image" />
+
+      {/* Download button */}
       <button
         className="button-4"
         onClick={() => {
@@ -102,6 +126,7 @@ export default function MemeGenerator() {
       >
         Download
       </button>
+
       {console.log(image)}
     </form>
   );
