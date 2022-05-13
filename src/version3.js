@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
   const [topText, setTopText] = useState('Hi');
-  const [bottomText, setBottomText] = useState('there');
+  const [bottomText, setBottomText] = useState(' ');
   const [allData, setAllData] = useState([]);
   const arrayOfLinks = [];
   const [customerTemplate, setCustomerTemplate] = useState('grumpycat');
