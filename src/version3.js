@@ -33,8 +33,9 @@ export default function MemeGenerator() {
 
   useEffect(() => {
     if (customerTemplate === '') {
+      setCustomerTemplate('grumpycat');
       setImage(
-        `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
+        `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
       );
     } else {
       setImage(
