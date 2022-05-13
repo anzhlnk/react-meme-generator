@@ -28,7 +28,7 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
+    `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
   );
 
   useEffect(() => {
