@@ -28,7 +28,7 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+    `https://api.memegen.link/images/grumpycat/hi/there.png`,
   );
 
   const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
@@ -47,10 +47,14 @@ export default function MemeGenerator() {
         Top text{' '}
         <input
           placeholder="Add Top Text"
-          onChange={(event) => {
-            setTopText(event.target.value);
-          }}
           value={topText}
+          onChange={(event) => {
+            const newTopText = event.target.value;
+            setTopText(newTopText);
+            setImage(
+              `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+            );
+          }}
         />
         {/* Top text reset button */}
         <button
@@ -69,10 +73,14 @@ export default function MemeGenerator() {
         Bottom text
         <input
           placeholder="Add Bottom Text"
-          onChange={(event) => {
-            setBottomText(event.target.value);
-          }}
           value={bottomText}
+          onChange={(event) => {
+            const newBottom = event.target.value;
+            setBottomText(newBottom);
+            setImage(
+              `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+            );
+          }}
         />
         {/* Bottom text  reset button */}
         <button
@@ -94,7 +102,11 @@ export default function MemeGenerator() {
           placeholder="Add template"
           value={customerTemplate}
           onChange={(event) => {
-            setCustomerTemplate(event.target.value);
+            const newTemplate = event.target.value;
+            setCustomerTemplate(newTemplate);
+            setImage(
+              `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+            );
           }}
         />
         {/* Customer Template reset button */}
@@ -111,14 +123,11 @@ export default function MemeGenerator() {
       <button
         className="button-4"
         onClick={() => {
-          customerTemplate === ''
-            ? setImage(
-                random.slice(0, random.length - 4) +
-                  `/ ${topText}/ ${bottomText}.png`,
-              )
-            : setImage(
-                `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
-              );
+          customerTemplate === '' &&
+            setImage(
+              random.slice(0, random.length - 4) +
+                `/ ${topText}/ ${bottomText}.png`,
+            );
         }}
       >
         Generate

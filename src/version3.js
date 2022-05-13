@@ -28,12 +28,21 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+    `https://api.memegen.link/images/grumpycat/hi/there.png`,
   );
 
   const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
 
-  console.log(image);
+  useEffect(() => {
+    customerTemplate === 'random'
+      ? setImage(
+          random.slice(0, random.length - 4) +
+            `/ ${topText}/ ${bottomText}.png`,
+        )
+      : setImage(
+          `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+        );
+  }, [topText, bottomText, customerTemplate, random]);
 
   return (
     <form
@@ -47,10 +56,10 @@ export default function MemeGenerator() {
         Top text{' '}
         <input
           placeholder="Add Top Text"
+          value={topText}
           onChange={(event) => {
             setTopText(event.target.value);
           }}
-          value={topText}
         />
         {/* Top text reset button */}
         <button
@@ -69,10 +78,10 @@ export default function MemeGenerator() {
         Bottom text
         <input
           placeholder="Add Bottom Text"
+          value={bottomText}
           onChange={(event) => {
             setBottomText(event.target.value);
           }}
-          value={bottomText}
         />
         {/* Bottom text  reset button */}
         <button
@@ -101,7 +110,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setCustomerTemplate('');
+            setCustomerTemplate('grumpycat');
           }}
         >
           Reset
@@ -111,17 +120,10 @@ export default function MemeGenerator() {
       <button
         className="button-4"
         onClick={() => {
-          customerTemplate === ''
-            ? setImage(
-                random.slice(0, random.length - 4) +
-                  `/ ${topText}/ ${bottomText}.png`,
-              )
-            : setImage(
-                `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
-              );
+          setCustomerTemplate('random');
         }}
       >
-        Generate
+        Random
       </button>
       {/* Download button */}
       <button
