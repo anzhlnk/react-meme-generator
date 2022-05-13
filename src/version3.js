@@ -12,18 +12,22 @@ export default function MemeGenerator() {
   );
 
   useEffect(() => {
-    if (topText && bottomText) {
+    if (topText && bottomText && customerTemplate) {
       setImage(
         `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
       );
-    } else if (topText && !bottomText) {
+    } else if (topText && !bottomText && customerTemplate) {
       setImage(
-        `https://api.memegen.link/images/${customerTemplate}/${topText}/_.png`,
+        `https://api.memegen.link/images/${customerTemplate}/${topText}.png`,
       );
-    } else if (!topText && bottomText) {
+    } else if (!topText && bottomText && customerTemplate) {
       setImage(
         `https://api.memegen.link/images/${customerTemplate}/_/${bottomText}.png`,
       );
+    } else if (topText && !bottomText && !customerTemplate) {
+      setImage(`https://api.memegen.link/images/grumpycat/${topText}/.png`);
+    } else if (!topText && bottomText && !customerTemplate) {
+      setImage(`https://api.memegen.link/images/grumpycat/_/${bottomText}.png`);
     } else if (!topText && !bottomText && !customerTemplate) {
       setImage(`https://api.memegen.link/images/grumpycat.png`);
     } else {
@@ -75,7 +79,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setTopText(' ');
+            setTopText('');
           }}
         >
           Reset
@@ -96,7 +100,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setBottomText(' ');
+            setBottomText('');
           }}
         >
           Reset
