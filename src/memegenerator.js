@@ -10,6 +10,7 @@ export default function MemeGenerator() {
   const arrayOfLinks = [];
   const [customerTemplate, setCustomerTemplate] = useState('');
 
+  // For the random meme generator
   useEffect(() => {
     fetch('https://api.memegen.link/templates')
       .then((response) => {
@@ -42,6 +43,7 @@ export default function MemeGenerator() {
         console.log('submitted');
       }}
     >
+      {/* Top text */}
       <label>
         Top text{' '}
         <input
@@ -51,6 +53,7 @@ export default function MemeGenerator() {
           }}
           value={topText}
         />
+        {/* Top text reset button */}
         <button
           className="button-4"
           onClick={() => {
@@ -62,6 +65,7 @@ export default function MemeGenerator() {
       </label>
       <br />
       <br />
+      {/* Bottom text */}
       <label>
         Bottom text
         <input
@@ -71,6 +75,7 @@ export default function MemeGenerator() {
           }}
           value={bottomText}
         />
+        {/* Bottom text  reset button */}
         <button
           className="button-4"
           onClick={() => {
@@ -79,6 +84,7 @@ export default function MemeGenerator() {
         >
           Reset
         </button>
+        {/* Customer template */}
       </label>
       <br />
       <br />
@@ -92,6 +98,7 @@ export default function MemeGenerator() {
             setCustomerTemplate(event.target.value);
           }}
         />
+        {/* Customer Template reset button */}
         <button
           className="button-4"
           onClick={() => {
@@ -101,6 +108,7 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
+      {/* Generate button */}
       <button
         className="button-4"
         onClick={() => {
@@ -116,6 +124,7 @@ export default function MemeGenerator() {
       >
         Generate
       </button>
+      {/* Download button */}
       <button
         className="button-4"
         onClick={() => {
