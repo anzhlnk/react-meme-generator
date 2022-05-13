@@ -6,37 +6,16 @@ export default function MemeGenerator() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [customerTemplate, setCustomerTemplate] = useState('');
-
   const [image, setImage] = useState(
     `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
   );
 
   useEffect(() => {
-    if (topText && bottomText && customerTemplate) {
-      setImage(
-        `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
-      );
-    } else if (topText && !bottomText && customerTemplate) {
-      setImage(
-        `https://api.memegen.link/images/${customerTemplate}/${topText}.png`,
-      );
-    } else if (!topText && bottomText && customerTemplate) {
-      setImage(
-        `https://api.memegen.link/images/${customerTemplate}/ /${bottomText}.png`,
-      );
-    } else if (topText && bottomText && !customerTemplate) {
-      setImage(
-        `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
-      );
-    } else if (topText && !bottomText && !customerTemplate) {
-      setImage(`https://api.memegen.link/images/grumpycat/${topText}/.png`);
-    } else if (!topText && bottomText && !customerTemplate) {
-      setImage(`https://api.memegen.link/images/grumpycat/ /${bottomText}.png`);
-    } else if (!topText && !bottomText && !customerTemplate) {
-      setImage(`https://api.memegen.link/images/grumpycat.png`);
-    } else {
-      setImage(`https://api.memegen.link/images/${customerTemplate}.png`);
-    }
+    setImage(
+      `https://api.memegen.link/images/${
+        customerTemplate ? customerTemplate : 'grumpycat'
+      }/${topText ? topText : '_'}/${bottomText ? bottomText : '_'}.png`,
+    );
   }, [topText, bottomText, customerTemplate]);
 
   return (
@@ -88,6 +67,8 @@ export default function MemeGenerator() {
         >
           Reset
         </button>
+        <br />
+        <br />
       </label>
       <label>
         Meme template
