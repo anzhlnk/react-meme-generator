@@ -1,5 +1,5 @@
 import './App.css';
-import MemeGenerator from './version3.js';
+import MemeGenerator from './memegenerator';
 
 function App() {
   return (

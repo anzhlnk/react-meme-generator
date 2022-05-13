@@ -3,37 +3,20 @@ import { saveAs } from 'file-saver';
 import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
-  const [topText, setTopText] = useState('Hi');
-  const [bottomText, setBottomText] = useState('there');
-  const [allData, setAllData] = useState([]);
-  const arrayOfLinks = [];
-  const [customerTemplate, setCustomerTemplate] = useState('grumpycat');
-
-  // For the random meme generator
-  useEffect(() => {
-    fetch('https://api.memegen.link/templates')
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        setAllData(response);
-      })
-      .catch(() => {
-        return 'Error';
-      });
-  }, []);
-
-  for (let i = 0; i < allData.length; i++) {
-    arrayOfLinks.push(allData[i].blank);
-  }
-
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
+  const [customerTemplate, setCustomerTemplate] = useState('');
   const [image, setImage] = useState(
-    `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+    `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
   );
 
-  const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
-
-  console.log(image);
+  useEffect(() => {
+    setImage(
+      `https://api.memegen.link/images/${
+        customerTemplate ? customerTemplate : 'grumpycat'
+      }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`,
+    );
+  }, [topText, bottomText, customerTemplate]);
 
   return (
     <form
@@ -42,15 +25,17 @@ export default function MemeGenerator() {
         console.log('submitted');
       }}
     >
+      {/* Customer template */}
+      <br />
       {/* Top text */}
       <label>
         Top text{' '}
         <input
           placeholder="Add Top Text"
+          value={topText}
           onChange={(event) => {
             setTopText(event.target.value);
           }}
-          value={topText}
         />
         {/* Top text reset button */}
         <button
@@ -63,16 +48,15 @@ export default function MemeGenerator() {
         </button>
       </label>
       <br />
-      <br />
       {/* Bottom text */}
       <label>
         Bottom text
         <input
           placeholder="Add Bottom Text"
+          value={bottomText}
           onChange={(event) => {
             setBottomText(event.target.value);
           }}
-          value={bottomText}
         />
         {/* Bottom text  reset button */}
         <button
@@ -83,10 +67,9 @@ export default function MemeGenerator() {
         >
           Reset
         </button>
-        {/* Customer template */}
+        <br />
+        <br />
       </label>
-      <br />
-      <br />
       <label>
         Meme template
         <input
@@ -107,23 +90,10 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
-      {/* Generate button */}
-      <button
-        className="button-4"
-        onClick={() => {
-          customerTemplate === ''
-            ? setImage(
-                random.slice(0, random.length - 4) +
-                  `/ ${topText}/ ${bottomText}.png`,
-              )
-            : setImage(
-                `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
-              );
-        }}
-      >
-        Generate
-      </button>
+
       {/* Download button */}
+
+      <img src={image} alt="meme" data-test-id="meme-image" />
       <button
         className="button-4"
         onClick={() => {
@@ -132,8 +102,7 @@ export default function MemeGenerator() {
       >
         Download
       </button>
-      <br />
-      <img src={image} alt="meme" data-test-id="meme-image" />
+      {console.log(image)}
     </form>
   );
 }
