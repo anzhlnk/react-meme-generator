@@ -7,7 +7,7 @@ export default function MemeGenerator() {
   const [bottomText, setBottomText] = useState(' ');
   const [allData, setAllData] = useState([]);
   const arrayOfLinks = [];
-  const [customerTemplate, setCustomerTemplate] = useState('grumpycat');
+  const [customerTemplate, setCustomerTemplate] = useState('');
 
   // For the random meme generator
   useEffect(() => {
@@ -28,20 +28,20 @@ export default function MemeGenerator() {
   }
 
   const [image, setImage] = useState(
-    `https://api.memegen.link/images/grumpycat/hi/there.png`,
+    `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
   );
 
-  const random = arrayOfLinks[Math.floor(Math.random() * arrayOfLinks.length)];
-
   useEffect(() => {
-    customerTemplate === 'random'
-      ? setImage(
-          random.slice(0, random.length - 4) + `/${topText}/${bottomText}.png`,
-        )
-      : setImage(
-          `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
-        );
-  }, [topText, bottomText, customerTemplate, random]);
+    if (customerTemplate === '') {
+      setImage(
+        `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
+      );
+    } else {
+      setImage(
+        `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
+      );
+    }
+  }, [topText, bottomText, customerTemplate]);
 
   return (
     <form
@@ -114,16 +114,7 @@ export default function MemeGenerator() {
           Reset
         </button>
       </label>
-      {/* Generate button */}
-      <br />
-      <button
-        className="button-4"
-        onClick={() => {
-          setCustomerTemplate('random');
-        }}
-      >
-        Random
-      </button>
+
       {/* Download button */}
 
       <img src={image} alt="meme" data-test-id="meme-image" />
