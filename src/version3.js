@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 import React, { useEffect, useState } from 'react';
 
 export default function MemeGenerator() {
-  const [topText, setTopText] = useState('Hi');
+  const [topText, setTopText] = useState(' ');
   const [bottomText, setBottomText] = useState(' ');
   const [allData, setAllData] = useState([]);
   const arrayOfLinks = [];
@@ -64,7 +64,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setTopText('');
+            setTopText(' ');
           }}
         >
           Reset
@@ -85,7 +85,7 @@ export default function MemeGenerator() {
         <button
           className="button-4"
           onClick={() => {
-            setBottomText('');
+            setBottomText(' ');
           }}
         >
           Reset
