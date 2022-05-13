@@ -134,7 +134,7 @@ export default function MemeGenerator() {
         Download
       </button>
       <br />
-      <img src={image} alt="meme" />
+      <img src={image} alt="meme" data-test-id="meme-image" />
     </form>
   );
 }
