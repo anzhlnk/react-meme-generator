@@ -24,6 +24,10 @@ export default function MemeGenerator() {
       setImage(
         `https://api.memegen.link/images/${customerTemplate}/_/${bottomText}.png`,
       );
+    } else if (topText && bottomText && !customerTemplate) {
+      setImage(
+        `https://api.memegen.link/images/grumpycat/${topText}/${bottomText}.png`,
+      );
     } else if (topText && !bottomText && !customerTemplate) {
       setImage(`https://api.memegen.link/images/grumpycat/${topText}/.png`);
     } else if (!topText && bottomText && !customerTemplate) {
