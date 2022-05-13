@@ -87,6 +87,7 @@ export default function MemeGenerator() {
       <label>
         Meme template
         <input
+          list="allmemes"
           name="image"
           placeholder="Add template"
           value={customerTemplate}
@@ -94,6 +95,11 @@ export default function MemeGenerator() {
             setCustomerTemplate(event.target.value);
           }}
         />
+        <datalist id="allmemes">
+          {allData.map((element) => {
+            return <option key={element['id']} value={element['id']}></option>;
+          })}
+        </datalist>
         {/* Customer Template reset button */}
         <button
           className="button-4"
