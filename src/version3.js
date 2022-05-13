@@ -36,11 +36,10 @@ export default function MemeGenerator() {
   useEffect(() => {
     customerTemplate === 'random'
       ? setImage(
-          random.slice(0, random.length - 4) +
-            `/ ${topText}/ ${bottomText}.png`,
+          random.slice(0, random.length - 4) + `/${topText}/${bottomText}.png`,
         )
       : setImage(
-          `https://api.memegen.link/images/${customerTemplate}/ ${topText}/ ${bottomText}.png`,
+          `https://api.memegen.link/images/${customerTemplate}/${topText}/${bottomText}.png`,
         );
   }, [topText, bottomText, customerTemplate, random]);
 
@@ -136,6 +135,7 @@ export default function MemeGenerator() {
       >
         Download
       </button>
+      {console.log(image)}
     </form>
   );
 }
