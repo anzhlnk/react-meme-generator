@@ -53,7 +53,7 @@ export default function MemeGenerator() {
         />
         {/* Top text reset button */}
         <button
-          className="button-4"
+          className="button"
           onClick={() => {
             setTopText('');
           }}
@@ -74,7 +74,7 @@ export default function MemeGenerator() {
         />
         {/* Bottom text  reset button */}
         <button
-          className="button-4"
+          className="button"
           onClick={() => {
             setBottomText('');
           }}
@@ -102,7 +102,7 @@ export default function MemeGenerator() {
         </datalist>
         {/* Customer Template reset button */}
         <button
-          className="button-4"
+          className="button"
           onClick={() => {
             setCustomerTemplate('');
           }}
@@ -112,7 +112,7 @@ export default function MemeGenerator() {
       </label>
       <br />
       <button
-        className="button-4"
+        className="button"
         onClick={() => {
           setCustomerTemplate(
             allData[Math.floor(Math.random() * allData.length)]['id'],
@@ -126,7 +126,7 @@ export default function MemeGenerator() {
 
       {/* Download button */}
       <button
-        className="button-4"
+        className="button"
         onClick={() => {
           saveAs(image, 'your meme.jpg');
         }}

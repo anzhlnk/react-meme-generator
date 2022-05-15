@@ -1,12 +1,16 @@
+:root {
+  --font: -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
 body {
+  font-family: var(--font);
   background: #eef0f3;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: -apple-system, system-ui, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-size: 14px;
   color: #24292e;
 }
@@ -26,7 +30,7 @@ form {
   max-width: 700px;
 }
 
-.button-4 {
+.button {
   margin: 2px;
   appearance: none;
   background-color: #fafbfc;
@@ -45,7 +49,7 @@ form {
   vertical-align: middle;
 }
 
-.button-4:hover {
+.button:hover {
   background-color: #f3f4f6;
   text-decoration: none;
   transition-duration: 0.1s;
@@ -72,8 +76,18 @@ input {
 }
 img {
   padding: 6px 0px;
-  position: relative;
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   width: 400px;
-  border-radius: 10px;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  form {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    padding: 0;
+    border-radius: 0;
+  }
 }
