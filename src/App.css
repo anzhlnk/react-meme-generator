@@ -19,7 +19,7 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
-form {
+.form {
   background: #f9fafb;
   box-shadow: -7px 7px 8px #d7d9dc;
   border-radius: 20px;
@@ -83,7 +83,7 @@ img {
 }
 
 @media screen and (max-width: 400px) {
-  form {
+  .form {
     width: 100vw;
     height: 100vh;
     justify-content: center;

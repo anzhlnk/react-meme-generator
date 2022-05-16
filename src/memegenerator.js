@@ -33,17 +33,12 @@ export default function MemeGenerator() {
   }, [topText, bottomText, customerTemplate]);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log('submitted');
-      }}
-    >
+    <div className="form">
       {/* Customer template */}
       <br />
       {/* Top text */}
       <label>
-        Top text{' '}
+        Top text
         <input
           placeholder="Add Top Text"
           value={topText}
@@ -135,6 +130,6 @@ export default function MemeGenerator() {
       </button>
 
       {console.log(image)}
-    </form>
+    </div>
   );
 }
