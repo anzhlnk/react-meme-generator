@@ -28,7 +28,7 @@ export default function MemeGenerator() {
     setImage(
       `https://api.memegen.link/images/${
         customerTemplate ? customerTemplate : 'grumpycat'
-      }/${topText ? topText : ' '}/${bottomText ? bottomText : ' '}.png`,
+      }/${topText ? topText : ' '}/${bottomText ? bottomText : ''}.png`,
     );
   }, [topText, bottomText, customerTemplate]);
 
